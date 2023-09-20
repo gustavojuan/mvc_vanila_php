@@ -17,24 +17,27 @@
 
 <?php
 $books = [
-    "Libro 1",
-    "Libro 2",
-    "Libro 3",
-    "Libro 4"
+    [
+        "name" => "Libro 1",
+        "author" => "Author 1",
+        "purchaseUrl" => "Url 1"
+    ],
+    [
+        "name" => "Libro 2",
+        "author" => "Author 2",
+        "purchaseUrl" => "Url 2"
+    ],
 ];
 ?>
 
-<ul>
-    <?php
-    foreach ($books as $book) {
-        echo "<li>{$book}™</li>";
-    }
-    ?>
-</ul>
 
 <ul>
-    <?php foreach ($books as $book) : ?>
-        <li><?= $book ?></li>
+    <?php foreach ($books as $book): ?>
+        <li>
+            <a href="<?= $book['purchaseUrl']; ?>">
+                <?= $book['name'] . " - " . $book['author'] ?>
+            </a>
+        </li>
     <?php endforeach; ?>
 </ul>
 
