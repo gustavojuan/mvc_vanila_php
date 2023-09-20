@@ -1,20 +1,3 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Demo</title>
-
-    <style>
-        body {
-
-            font-family: sans-serif;
-        }
-    </style>
-</head>
-<body>
-
-<h1>Recommended Books</h1>
-
 <?php
 $books = [
     [
@@ -91,67 +74,14 @@ $books = [
     ],
 ];
 
-$filterByAuthor = function ($books, $author) {
 
-    $filteredBooks = [];
-
-
-    foreach ($books as $book) {
-        if ($book['author'] === $author) {
-            $filteredBooks[] = $book;
-        }
-    }
-    return $filteredBooks;
-};
-
-/*function filter($items, $fn){
-
-    $filteredItems = [];
-
-    foreach ($items as $item) {
-        if ($fn($item)) {
-            $filteredItems[] = $item;
-        }
-    }
-    return $filteredItems;
-}*/
-
-
-//$filteredBooks = filter($books, 'releaseYear', 1985);
-
-$filteredBooks = array_filter($books, function ($book){
-    return  $book['releaseYear']>= 1989;
+$filteredBooks = array_filter($books, function ($book) {
+    return $book['releaseYear'] >= 1989;
 });
 
 
-$filteredBooks = array_filter($books, function ($book){
-    return  $book['author']=== "Neal Stephenson";
-});
+require 'index.view.php';
 
 
 
 
-
-
-
-
-?>
-
-
-
-
-<ul>
-    <?php foreach ($filteredBooks as $book): ?>
-
-        <li>
-            <a href="<?= $book['purchaseUrl']; ?>">
-                <?= $book['name'] . " - " . $book['releaseYear'] ?> by <?= $book['author'] ?>
-            </a>
-        </li>
-
-    <?php endforeach; ?>
-</ul>
-
-
-</body>
-</html>
