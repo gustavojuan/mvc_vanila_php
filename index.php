@@ -6,30 +6,37 @@
 
     <style>
         body {
-            display: grid;
-            place-items: center;
-            height: 100vh;
-            margin: 0;
+
             font-family: sans-serif;
         }
     </style>
 </head>
 <body>
 
+<h1>Recommended Books</h1>
 
 <?php
-    $name = "Dark Matter";
-    $read = true;
+$books = [
+    "Libro 1",
+    "Libro 2",
+    "Libro 3",
+    "Libro 4"
+];
 ?>
 
-<?php
-    if ($read) {
-        $message = "You have read $name.";
-    }else {
-        $message = "You have NOT read $name.";
+<ul>
+    <?php
+    foreach ($books as $book) {
+        echo "<li>{$book}™</li>";
     }
-?>
+    ?>
+</ul>
 
-    <h1><?= $message ?></h1>
+<ul>
+    <?php foreach ($books as $book) : ?>
+        <li><?= $book ?></li>
+    <?php endforeach; ?>
+</ul>
+
 </body>
 </html>
