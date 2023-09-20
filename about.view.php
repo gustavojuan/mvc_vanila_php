@@ -2,7 +2,7 @@
 <html lang="en" class="h-full bg-gray-100">
 <head>
     <meta charset="UTF-8">
-    <title>home</title>
+    <title>About us</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
@@ -20,10 +20,10 @@
                     <div class="hidden md:block">
                         <div class="ml-10 flex items-baseline space-x-4">
                             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                            <a href="/index.php" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
+                            <a href="/index.php" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
                                >Home</a>
                             <a href="/about.php"
-                               class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">About us</a>
+                               class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"">About us</a>
                             <a href="/contact.php"
                                class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Contact</a>
 
@@ -157,13 +157,13 @@
 
     <header class="bg-white shadow">
         <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-            <h1 class="text-3xl font-bold tracking-tight text-gray-900">Home</h1>
+            <h1 class="text-3xl font-bold tracking-tight text-gray-900">About us</h1>
         </div>
     </header>
 
     <main>
         <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
-            <p>Welcome</p>
+            <p>About</p>
         </div>
     </main>
 
