@@ -7,8 +7,12 @@ $config = require 'config.php';
 
 $db = new Database($config['database']);
 
-$posts = $db->query("SELECT * FROM posts where id > 0")->fetchAll();
+// Injection
+// http://demo.test/?id=1 drop table users
+$id = $_GET['id'];
+//never pass user input to a query
+$query =  "SELECT * FROM posts where id = :id";
+
+$posts = $db->query($query,[':id' => $id])->fetch();
 dd($posts);
 
-$posts = $db->query("SELECT * FROM posts where id > 0")->fetch();
-dd($posts);
