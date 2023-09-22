@@ -1,20 +1,24 @@
 <?php
 
+require 'Validator.php';
+
 $config = require('config.php');
 $db = new Database($config['database']);
 
 $heading = "Create Note";
 
+
+//if(! Validator::email('asdad')){
+//    dd('Thats not an email');
+//}
+
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $errors = [];
 
-    if (strlen($_POST['body']) === 0) {
-        $errors['body'] = 'A body is required';
-    }
-
-    if (strlen($_POST['body']) > 1000) {
-        $errors['body'] = 'The body cannot be more than 1.000 chars.';
+    if(! Validator::string($_POST['body'],1,1000)){
+        $errors['body'] = "A body of no more than 1,000 characteres is required";
     }
 
     if (empty($errors)) {
@@ -23,5 +27,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'user_id' => 1
         ]);
     }
+
 }
 require 'views/note-create.view.php';
