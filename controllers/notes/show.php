@@ -13,11 +13,9 @@ $currentUserId = 1;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-
     $note = $db->query("SELECT * FROM notes where id = :id", [
         'id' => $_POST['id']
     ])->findOrFail();
-
 
     authorize($note['user_id'] === $currentUserId);
 
@@ -28,14 +26,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header('Location: /notes');
     exit();
 
-
 } else {
-
 
     $note = $db->query("SELECT * FROM notes where id = :id", [
         'id' => $_GET['id']
     ])->findOrFail();
-
 
     authorize($note['user_id'] === $currentUserId);
 

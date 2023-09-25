@@ -37,3 +37,12 @@ function authorize($condition, $status = Response::FORBIDDEN)
 
     return true;
 }
+
+function abort($status = 404)
+{
+    http_response_code($status);
+
+    require base_path("views/{$status}.php");
+
+    die();
+}
