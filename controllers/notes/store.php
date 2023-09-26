@@ -1,22 +1,23 @@
 <?php
 
+use Core\App;
 use Core\Database;
 use Core\Validator;
 
-$config = require base_path('config.php');
-$db = new Database($config['database']);
+
+$db = App::resolve(Database::class);
 
 $heading = "Create Note";
 
 $errors = [];
 
 
-if (!Core\Validator::string($_POST['body'], 1, 1000)) {
+if (!Validator::string($_POST['body'], 1, 1000)) {
     $errors['body'] = "A body of no more than 1,000 characteres is required";
 }
 
 
-if(!empty($errors)){
+if (!empty($errors)) {
     return view('notes/create.view.php',
         [
             'heading' => $heading,
