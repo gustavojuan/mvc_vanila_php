@@ -8,7 +8,7 @@ $db = App::resolve(Database::class);
 
 
 $heading = "Note";
-$currentUserId = 1;
+$currentUserId = 12;
 
 $note = $db->query("SELECT * FROM notes where id = :id", [
     'id' => $_POST['id']

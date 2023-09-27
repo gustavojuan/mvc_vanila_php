@@ -19,7 +19,7 @@ if (!Validator::string($password, 7, 25)) {
 }
 
 if (!empty($errors)) {
-    return view('registration/create.view.php', [
+    view('sessions/create.view.php', [
             'errors' => $errors
         ]
     );
@@ -33,27 +33,21 @@ $user = $db->query("SELECT * FROM users WHERE email = :email", [
     'email' => $email
 ])->find();
 
+$errors = [];
+
 
 // If yes, redirect to login page
 if ($user) {
+    if (password_verify($password, $user['password'])) {
+        login($user);
 
-    //then someone with that email exxists and has accout
-    //if Yes redirect to log in
-    header('Location: /');
-    exit;
-
-} else {
-
-    // If not, then create , log and redirect
-    $db->query('INSERT INTO users(email,password) VALUES (:email,:password) ', [
-        'email' => $email,
-        'password' => password_hash($password,PASSWORD_BCRYPT)
-    ]);
-
-    login($user);
-
-    header('Location: /');
-    exit;
+        header('location: /');
+        exit();
+    }
 }
-
-
+return view('sessions/create.view.php',
+    [
+        'errors' => [
+            'email' => 'No matching account found for that email address and password'
+        ]
+    ]);

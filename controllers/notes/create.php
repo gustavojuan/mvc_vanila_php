@@ -1,13 +1,9 @@
 <?php
-
-$heading = "Create Note";
-
 $errors = [];
-
 
 view('notes/create.view.php',
     [
-        'heading' => $heading,
+        'heading' => 'Create Note',
         'errors' => $errors
     ]
 );
