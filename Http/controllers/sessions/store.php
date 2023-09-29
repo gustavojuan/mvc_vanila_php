@@ -3,26 +3,23 @@
 use Core\App;
 use Core\Database;
 use Core\Validator;
+use Http\Forms\LoginForm;
 
 $email = $_POST['email'];
 $password = $_POST['password'];
 
-// Validate the form inputs
-$errors = [];
 
-if (!Validator::email($email)) {
-    $errors['email'] = 'Please provide a valid email addres';
-}
 
-if (!Validator::string($password, 7, 25)) {
-    $errors['password'] = 'Please provide a  password of at least 7 chars.';
-}
+$form = new LoginForm();
 
-if (!empty($errors)) {
-    view('sessions/create.view.php', [
-            'errors' => $errors
+
+if (!$form->validate($email, $password)) {
+    dd($form->errors());
+    return view('sessions/create.view.php', [
+            'errors' => $form->errors()
         ]
     );
+
 }
 
 
@@ -32,8 +29,6 @@ $db = App::resolve(Database::class);
 $user = $db->query("SELECT * FROM users WHERE email = :email", [
     'email' => $email
 ])->find();
-
-$errors = [];
 
 
 // If yes, redirect to login page
@@ -45,6 +40,8 @@ if ($user) {
         exit();
     }
 }
+
+
 return view('sessions/create.view.php',
     [
         'errors' => [
