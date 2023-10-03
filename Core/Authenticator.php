@@ -38,7 +38,8 @@ class Authenticator
 
     public function logout()
     {
-        $_SESSION = [];
+        Session::flush();
+
         session_destroy();
 
         $params = session_get_cookie_params();
