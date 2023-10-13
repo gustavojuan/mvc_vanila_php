@@ -14,7 +14,8 @@ class Container
     {
 
         if (!array_key_exists($key, $this->bindings)) {
-            throw  new \Exception("No matching found for your {$key}");
+            throw  new \Exception("No ma
+            tching found for your {$key}");
         }
 
         $resolver = $this->bindings[$key];
